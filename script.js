@@ -15,13 +15,8 @@ checkerboard.style.flexWrap = "wrap";
 // add a border to the checkerboard to make it look dope
 checkerboard.style.border = "solid black 10px";
 
-// color marker for the next tile
-let red = false;
-
 // this loop runs 64 times
 for (let i = 0; i < 64; i++) {
-    // math bump
-    if (i % 8 === 0) { red = !red }
     // create a checkerboard tile (div) element
     let tile = document.createElement("div");
     // append it to the checkerboard
@@ -29,8 +24,13 @@ for (let i = 0; i < 64; i++) {
     // give it height and width
     tile.style.height = "12.5%";
     tile.style.width = "12.5%";
-    // give it a background color based on the color marker
-    red ? tile.style.backgroundColor = "red" : tile.style.backgroundColor = "black";
-    // toggle red flag
-    red = !red;
+    // give it a random background color
+    tile.style.backgroundColor = randomColor();
+}
+
+function randomColor() {
+    let r = Math.ceil(Math.random() * 255);
+    let g = Math.ceil(Math.random() * 255);
+    let b = Math.ceil(Math.random() * 255);
+    return `rgb(${r}, ${g}, ${b})`;
 }
